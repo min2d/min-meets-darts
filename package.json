@@ -1,0 +1,27 @@
+{
+  "name": "electron_typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "webpack": "./node_modules/.bin/webpack.cmd"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.5.0",
+    "electron": "^1.8.2",
+    "electron-rebuild": "^1.7.3",
+    "expose-loader": "^0.7.4",
+    "phaser-ce": "^2.10.1",
+    "source-map-loader": "^0.2.3",
+    "typescript": "^2.7.2",
+    "webpack": "^4.0.0",
+    "webpack-cli": "^2.0.9"
+  },
+  "dependencies": {
+    "arduino-firmata": "min2d/node-arduino-firmata"
+  }
+}
