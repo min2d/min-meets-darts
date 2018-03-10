@@ -21,14 +21,15 @@ export default class MainMenu extends Phaser.State {
 		this.add.tween(this.background).to({ alpha: 1 }, 2000, Phaser.Easing.Bounce.InOut, true);
 		this.add.tween(this.logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
 
-		this.input.onDown.addOnce(this.fadeOut, this);
+		// クリックに反応させる場合は↓
+		//this.input.onDown.addOnce(this.fadeOut, this);
 		this.input.keyboard.addCallbacks(this, null, null, this.keyPress);
 	}
 
 	fadeOut() {
 
 		this.add.tween(this.background).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-		var tween = this.add.tween(this.logo).to({ y: 800 }, 2000, Phaser.Easing.Linear.None, true);
+		var tween = this.add.tween(this.logo).to({ y: 800 }, 1000, Phaser.Easing.Linear.None, true);
 
 		tween.onComplete.add(this.startGame, this);
 
@@ -47,6 +48,7 @@ export default class MainMenu extends Phaser.State {
 		//Phaser.Keycode.A=数字みたいな宣言もあるっぽ
 		//エンターは取れる。タブが取れない。
 		//おそらくeventの中身はJSのKeyboardEventと同じもの
+		this.fadeOut();
 	}
 
 
