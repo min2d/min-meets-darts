@@ -5,6 +5,7 @@ export default class Preloader extends Phaser.State {
 	ready: boolean = false;
 
   prop = 'this is prop'; //値保持用(外から見たり変えたりできる)
+	gameStates = ['Tomarena','Tomarena','Tomarena'];
 
 	preload() {
 
@@ -20,6 +21,7 @@ export default class Preloader extends Phaser.State {
 		//	As this is just a Project Template I've not provided these assets, swap them for your own.
 		this.load.image('titlepage', 'assets/titlepage.png');
 		this.load.audio('titleMusic', 'assets/jingle01.wav', true);
+		this.load.audio('sfx01', 'assets/sfx01.wav', true);
 		this.load.image('logo', 'assets/logo.png');
     // this.load.spritesheet('simon', 'assets/simon.png', 58, 96, 5);
 		this.load.image('minWhite', 'assets/min_white.png');

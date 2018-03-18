@@ -7,15 +7,10 @@
 // }
 
 
-// if (typeof window['require'] !== "undefined") {
-    let electron = (window as any)['require']("electron");
-    //↑なんか無理やり解決した感ある
-    let ipcRenderer = electron.ipcRenderer;
-    console.log("ipc renderer", ipcRenderer);
-// // }
-
-
-   ipcRenderer.send('message', 'ping');
+  // let electron = (window as any)['require']("electron");//無理やり解決した
+  // let ipcRenderer = electron.ipcRenderer;
+  // console.log("ipc renderer", ipcRenderer);
+  // ipcRenderer.send('message', 'ping');
 
 
 

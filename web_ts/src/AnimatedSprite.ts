@@ -1,26 +1,21 @@
 
-export default class Player extends Phaser.Sprite {
+export default class AnimatedSprite extends Phaser.Sprite {
 
 	constructor(game: Phaser.Game, x: number, y: number) {
 
 		super(game, x, y, 'minWhite', 0);
 		this.scale.x= 0.42;
 		this.scale.y= 0.42;
-
-		this.game.physics.arcade.enableBody(this);
-
 		// this.anchor.setTo(0.5, 0);
 
 		// this.animations.add('walk', [0, 1, 2, 3, 4], 10, true);
-
-
-		game.add.existing(this);
+		game.add.existing(this);//返り値に対して.killで消える、reviveで再出現らしい。
 
 	}
 
 	update() {
 
-
+		// スプライトシートで表示対象を変えてアニメーションするときのやつ
 		// this.body.velocity.x = 0;
 		//
 		// if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
