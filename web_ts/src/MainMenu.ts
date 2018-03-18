@@ -13,7 +13,6 @@ export default class MainMenu extends Phaser.State {
 		this.music.play();
 
 		this.background = this.add.tileSprite(0, 0, this.world.width, this.world.height, 'titlepage');
-		// this.background = this.add.sprite(0, 0, 'titlepage');
 		this.background.alpha = 0;
 
 		this.logo = this.add.sprite(this.world.centerX, -300, 'logo');
@@ -27,7 +26,8 @@ export default class MainMenu extends Phaser.State {
 		this.infoText = this.add.text(0, 0, "push button", style);
 		this.infoText.setTextBounds(0, this.world.height*0.6, this.world.width, this.world.height*0.2);
 		this.infoText.alpha = 0;
-		this.add.tween(this.infoText).to({ alpha: 1 }, 2000, "Linear", true);
+		this.add.tween(this.infoText).to({ alpha: 1 }, 2000, "Linear", true, 4000);
+
 		this.input.keyboard.addCallbacks(this, null, null, this.keyPress);
 	}
 
