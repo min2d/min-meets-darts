@@ -8,9 +8,9 @@ export default class Preloader extends Phaser.State {
 	//this.game.state.states['Preloader'].変数名で参照できる
 	gameStates = ['Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura',
 								'Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura'];
-	nextGameStates = 0;
+	nextGameStateIndex = 0;
 	keyMap = {
-		13:"change",9:"start",
+		13:"red",9:"black",
 		65:[2,1],66:[4,2],67:[15,3],68:[11,3],69:[8,1],70:[14,2],71:[14,1],
 		72:[16,2],73:[6,1],74:[6,1],75:[8,1],76:[19,1],77:[15,2],78:[12,2],
 		79:[20,2],80:[3,1],81:[18,3],82:[0,4],83:[7,3],84:[15,1],

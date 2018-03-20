@@ -1,5 +1,6 @@
+import MuBase from "./MuBase";
 
-export default class MainMenu extends Phaser.State {
+export default class MainMenu extends MuBase {
 
 	// background: Phaser.Sprite;
 	background: Phaser.TileSprite;
@@ -8,17 +9,17 @@ export default class MainMenu extends Phaser.State {
 	music: Phaser.Sound;
 
 	create() {
-
+		// set BGM
 		this.music = this.add.audio('titleMusic');
 		this.music.play();
-
+		// set BG sprite
 		this.background = this.add.tileSprite(0, 0, this.world.width, this.world.height, 'titlepage');
 		this.background.alpha = 0;
-
-		this.logo = this.add.sprite(this.world.centerX, -300, 'logo');
-		this.logo.anchor.setTo(0.5, 0.5);
-
 		this.add.tween(this.background).to({ alpha: 1 }, 2000, Phaser.Easing.Bounce.InOut, true);
+
+		// set logo
+		this.logo = this.add.sprite(this.world.centerX, -300, 'logo');
+		this.logo.anchor.setTo(0.5, 0.5);	
 		this.add.tween(this.logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
 
 		//info text
@@ -28,36 +29,24 @@ export default class MainMenu extends Phaser.State {
 		this.infoText.alpha = 0;
 		this.add.tween(this.infoText).to({ alpha: 1 }, 2000, "Linear", true, 4000);
 
-		this.input.keyboard.addCallbacks(this, null, null, this.keyPress);
+		super.create();
 	}
 
+	redPressed() {
+		var sfx = this.add.audio('sfx01');
+		sfx.play();
+		this.fadeOut();
+	}
 	fadeOut() {
 		this.add.tween(this.infoText).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
 		this.add.tween(this.background).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
 		var tween = this.add.tween(this.logo).to({ y: 800 }, 1000, Phaser.Easing.Linear.None, true);
-
 		tween.onComplete.add(this.startGame, this);
-
 	}
-
 	startGame() {
 		this.music.stop();
 		var firstGameState = this.game.state.states['Preloader'].gameStates[0];
 		//下のstartの引数は、(key, clearWorld, clearCache, parameter)
 		this.game.state.start(firstGameState, true, false);
 	}
-
-	keyPress() {
-		console.log(this.game.input.keyboard.event.keyCode);
-		console.log(this.game.input.keyboard.event.key);
-		//Phaser.Keycode.A=数字みたいな宣言もあるっぽ
-		//エンターは取れる。タブが取れない。
-		//おそらくeventの中身はJSのKeyboardEventと同じもの
-
-		var sfx = this.add.audio('sfx01');
-		sfx.play();
-		this.fadeOut();
-	}
-
-
 }

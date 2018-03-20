@@ -1,26 +1,25 @@
-export default class Omote extends Phaser.State {
+import MuBase from "./MuBase";
+
+export default class Omote extends MuBase {
+	muStatus: any;
   create(){
-    console.log('Omote created');
-		this.input.keyboard.addCallbacks(this, null, null, this.keyPress);    
+		console.log('Omote created');
+		this.muStatus = this.game.state.states['Preloader'];		
+		super.create();
   }
-  keyPress() {
-		var keyCode = this.game.input.keyboard.event.keyCode;
-		if (this.game.input.keyboard.event.shiftKey){
-			keyCode = keyCode + 1000;
-		}
-		console.log(keyCode);
-		//Phaser.Keycode.A=数字みたいな宣言もあるっぽ
-		//エンターは取れる。タブが取れない。
-		//おそらくeventの中身はJSのKeyboardEventと同じもの
-
-		var keyMap = this.game.state.states['Preloader'].keyMap
-
-		var input = keyMap[keyCode];
-		console.log(input);
-
+	numberPressed(){
 		var sfx = this.add.audio('sfx01');
 		sfx.play();
-		
+	}
+	redPressed(){
+		this.fadeOut();
+	}
+	fadeOut(){
+		this.muStatus.nextGameStateIndex++;
+		var nextGameState = this.muStatus.gameStates[this.muStatus.nextGameStateIndex];
+
+		//下のstartの引数は、(key, clearWorld, clearCache, parameter)
+		this.game.state.start(nextGameState, true, false);
 	}
 
 }
