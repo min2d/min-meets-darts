@@ -1,10 +1,8 @@
-import MuBase from "./MuBase";
+import PlayBase from "./PlayBase";
 
-export default class Ura extends MuBase {
+export default class Ura extends PlayBase {
   create(){
     console.log('Ura created');
-  }
-  redPressed(){
-    
+    super.create();
   }
 }
