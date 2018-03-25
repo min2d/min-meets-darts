@@ -53,6 +53,7 @@ export default class PlayBase extends MuBase {
             this.bust = true;
             return;
         }else if(this.tempScore == 0){
+            this.score = this.tempScore;
             this.winFadeOut();
         }
         this.score = this.tempScore;
@@ -75,6 +76,7 @@ export default class PlayBase extends MuBase {
     }
     winFadeOut(){
         //とりあえずリザルトに飛ぶだけにしておく
+        this.game.state.states['Preloader'][this.scoreTarget] = this.score;
         this.game.state.start('Result',true,false);
     }
 }
