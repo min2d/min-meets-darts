@@ -13,6 +13,10 @@ export default class MuBase extends Phaser.State {
 
 		var input = keyMap[keyCode];
         console.log(input);	
+        if (input == undefined){
+            console.log(keyCode + 'は未定義です')
+            return;
+        }
         if (input == 'red'){
             this.redPressed();
         }else if (input == 'black'){
