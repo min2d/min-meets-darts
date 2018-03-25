@@ -1,3 +1,11 @@
+@font-face {
+	font-family: 'MyFont';
+	src: url(/assets/ProstoOne-Regular.ttf);
+}
+
+body {
+	font-family: MyFont;
+}
 *{
     margin:0;
     padding:0;
@@ -6,4 +14,5 @@ body{
     height:1080px;
     width:1920px;
     overflow: hidden;
+    font-family: MyFont;
 }
