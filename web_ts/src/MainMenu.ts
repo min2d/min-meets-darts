@@ -4,7 +4,7 @@ export default class MainMenu extends MuBase {
 
 	// background: Phaser.Sprite;
 	background: Phaser.TileSprite;
-	logo: Phaser.Sprite;
+	logo: Phaser.Text;
 	infoText: Phaser.Text;
 	music: Phaser.Sound;
 
@@ -18,13 +18,14 @@ export default class MainMenu extends MuBase {
 		this.add.tween(this.background).to({ alpha: 1 }, 2000, Phaser.Easing.Bounce.InOut, true);
 
 		// set logo
-		this.logo = this.add.sprite(this.world.centerX, -300, 'logo');
-		this.logo.anchor.setTo(0.5, 0.5);	
+		var style = {fill: "#1d043f", align: "center",boundsAlignH: "center", font:"60px ProstOne"};
+		this.logo =  this.add.text(this.world.width/2, -50, "titletext", style);	
+		this.logo.anchor.setTo(0.5, 0.5);
 		this.add.tween(this.logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
 
 		//info text
-		var style = {align: "center",boundsAlignH: "center", boundsAlignV: "middle" };
-		this.infoText = this.add.text(0, 0, "push button", style);
+		var style2 = {align: "center",boundsAlignH: "center", boundsAlignV: "middle", font:"40px ProstOne"};
+		this.infoText = this.add.text(0, 0, "push button", style2);
 		this.infoText.setTextBounds(0, this.world.height*0.6, this.world.width, this.world.height*0.2);
 		this.infoText.alpha = 0;
 		this.add.tween(this.infoText).to({ alpha: 1 }, 2000, "Linear", true, 4000);
