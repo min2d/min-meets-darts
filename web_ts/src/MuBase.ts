@@ -1,3 +1,4 @@
+import Config from "./Config";
 export default class MuBase extends Phaser.State {
     create(){
 		this.input.keyboard.addCallbacks(this, null, null, this.keyPress);          
@@ -9,7 +10,7 @@ export default class MuBase extends Phaser.State {
 		}
 		console.log(keyCode);
 
-		var keyMap = this.game.state.states['Preloader'].keyMap
+		var keyMap = Config.keyMap
 
 		var input = keyMap[keyCode];
         console.log(input);	
