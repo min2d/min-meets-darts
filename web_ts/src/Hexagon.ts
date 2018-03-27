@@ -1,3 +1,5 @@
+import Config from "./Config";
+
 export default class Hexagon extends Phaser.Graphics {
     xBase = 10;
     yBase = 13;
@@ -15,7 +17,7 @@ export default class Hexagon extends Phaser.Graphics {
         this.drawHexagon(5.8,color2);
         this.drawHexagon(5.6,color1);
 
-        this.text = game.make.text(0,this.yBase*0.3,'',{fontSize:70,fill:"#FFF"});
+        this.text = game.make.text(0,this.yBase*0.3,'',{fontSize:140*Config.ZOOM,fill:"#FFF", font:"ProstOne"});
         this.text.anchor.setTo(0.5,0.5);
         this.addChild(this.text);
 

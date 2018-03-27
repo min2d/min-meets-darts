@@ -1,5 +1,6 @@
 import MuBase from "./MuBase";
 import Hexagon from "./Hexagon";
+import CenterNumberPanel from "./CenterNumberPanel";
 
 export default class PlayBase extends MuBase {
     scoreTarget: string;
@@ -10,6 +11,7 @@ export default class PlayBase extends MuBase {
     tempScore = 0;
     omoteHexagon: Hexagon;
     uraHexagon: Hexagon;
+    centerNumberPanel: CenterNumberPanel;
     create(){
             this.muStatus = this.game.state.states['Preloader'];		
             super.create();
@@ -19,7 +21,7 @@ export default class PlayBase extends MuBase {
             this.tempScore = this.score;
             this.omoteHexagon = new Hexagon(this.game,this.world.width* 0.25,this.world.height*0.85,this.muStatus.omoteColor);
             this.uraHexagon = new Hexagon(this.game,this.world.width* 0.75,this.world.height*0.85,this.muStatus.uraColor);
-            
+            this.centerNumberPanel = new CenterNumberPanel(this.game, this.world.width*0.5,this.world.height*0.5);
     }
     numberPressed(input: any){
         var sfx = this.add.audio('sfx01');
