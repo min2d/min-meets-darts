@@ -17,4 +17,18 @@ export default class Config {
 		1190:[5,2],1191:[5,1],186:[12,1],187:[2,2],188:[13,2],189:[4,1],190:[9,3],
 		1189:[2,1],191:[10,3],192:[4,1],219:[11,1],221:[10,1],222:[16,1],1222:[8,2]
 	}
+	static playerColors:any = [
+		0xf39700,0xe60012,0x00a7db,0x009944,0xd7c447,
+		0x9b7cb6,0x00ada9,0xbb641d,0xe85298,0x0079c2,
+		0x6cbb5a,0xb6007a,0xe5171f,0x522886,0x0078ba,0x019a66,
+		0xe44d93,0x814721,0xa9cc51,0xee7b1a,0x00a0de
+	];
+	static getOmoteUraColor():number[]{
+		var index1 = Math.floor(Math.random()* this.playerColors.length);
+		var index2 = Math.floor(Math.random()* this.playerColors.length);
+		while(index1 == index2){
+			var index2 = Math.floor(Math.random()* this.playerColors.length);
+		}
+		return [this.playerColors[index1],this.playerColors[index2]];
+	}
 }

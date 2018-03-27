@@ -1,16 +1,21 @@
+import Config from "./Config";
+
 export default class Preloader extends Phaser.State {
 
 	preloadBar: Phaser.Sprite;
 	background: Phaser.Sprite;
 	ready: boolean = false;
 
-  //グローバルの代わり
+  	//グローバルの代わり
 	//this.game.state.states['Preloader'].変数名で参照できる
 	gameStates = ['Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura',
-								'Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura'];
+					'Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura'];
+	omoteColor: number;
+	uraColor: number;
 	nextGameStateIndex = 0;
 	scoreOmote = 301;
 	scoreUra = 301;
+	
 
 	preload() {
 
@@ -32,7 +37,10 @@ export default class Preloader extends Phaser.State {
 		//	+ lots of other required assets here
 		//フォントのプリロード
 		this.game.add.text(0, 0, "hack", {font:"1px ProstOne", fill:"#FFFFFF"});
-
+		var omoteUraColor = Config.getOmoteUraColor();
+		this.omoteColor = omoteUraColor[0];
+		this.uraColor = omoteUraColor[1];
+		this.game.stage.backgroundColor = "#fff";
 	}
 
 	create() {
