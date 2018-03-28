@@ -19,8 +19,11 @@ export default class PlayBase extends MuBase {
             this.score = MuStatus.getScore(this.scoreTarget);
             this.tempScore = this.score;
             this.omoteHexagon = new HexagonWithStr(this.game,this.world.width* 0.25,this.world.height*0.85,MuStatus.omoteColor);
+            this.omoteHexagon.setText(MuStatus.scoreOmote);
             this.uraHexagon = new HexagonWithStr(this.game,this.world.width* 0.75,this.world.height*0.85,MuStatus.uraColor);
+            this.uraHexagon.setText(MuStatus.scoreUra);
             this.centerNumberPanel = new CenterNumberPanel(this.game, this.world.width*0.5,this.world.height*0.5);
+            //centerパネルは裏表で参照先違うのでそれぞれのcreateで設定
     }
     numberPressed(input: any){
         var sfx = this.add.audio('sfx01');
