@@ -31,12 +31,13 @@ export default class PlayBase extends MuBase {
             this.centerNumberPanel = new CenterNumberPanel(this.game, this.world.width*0.5,this.world.height*0.45);
             this.centerNumberPanel.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
             this.ribbons = new Array();
-            this.ribbons[0] = new RibbonWithStr(this.game, this.world.width*0.28, this.world.height*0.12,MuStatus.ribbonColor);
-            this.ribbons[0].scale = new PIXI.Point(Config.ZOOM, Config.ZOOM);
+            this.ribbons[0] = new RibbonWithStr(this.game, this.world.width*0.68, this.world.height*0.12,MuStatus.ribbonColor);
             this.ribbons[1] = new RibbonWithStr(this.game, this.world.width*0.48, this.world.height*0.12,MuStatus.ribbonColor);
-            this.ribbons[1].scale = new PIXI.Point(Config.ZOOM, Config.ZOOM);
-            this.ribbons[2] = new RibbonWithStr(this.game, this.world.width*0.68, this.world.height*0.12,MuStatus.ribbonColor);
-            this.ribbons[2].scale = new PIXI.Point(Config.ZOOM, Config.ZOOM);
+            this.ribbons[2] = new RibbonWithStr(this.game, this.world.width*0.28, this.world.height*0.12,MuStatus.ribbonColor);
+            for(var i=0;i<3;i++){
+                this.ribbons[i].scale = new PIXI.Point(Config.ZOOM, Config.ZOOM);
+                this.ribbons[i].stopAppeal();
+            }
             this.visualInit();//baseでできない処理(オーバーライドしてる)
     }
 
@@ -52,6 +53,9 @@ export default class PlayBase extends MuBase {
         }
         //hit
         this.count++;
+        for(var i=0;i<this.count;i++){
+            this.ribbons[i].startAppeal();
+        }
         console.log(input);
         this.exec(input);
         if(this.bust){
