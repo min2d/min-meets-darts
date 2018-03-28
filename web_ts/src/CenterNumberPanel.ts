@@ -11,7 +11,11 @@ export default class CenterNumberPanel extends Phaser.Graphics {
 
         game.add.existing(this);
     }
-    setText(str: string){
-        this.text.setText(str);
+    setText(val: string|number){
+        if(typeof(val) == 'number'){
+            this.text.setText(val.toString());
+        }else{
+            this.text.setText(val);
+        }
     }
 }

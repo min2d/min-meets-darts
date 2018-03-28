@@ -4,7 +4,6 @@ export default class Hexagon extends Phaser.Graphics {
     xBase = 10;
     yBase = 13;
     color: number;
-    text: Phaser.Text;
 
     constructor(game: Phaser.Game, x: number, y: number, color:number){
         super(game,x,y);
@@ -16,12 +15,6 @@ export default class Hexagon extends Phaser.Graphics {
         this.drawHexagon(6,color1);
         this.drawHexagon(5.8,color2);
         this.drawHexagon(5.6,color1);
-
-        this.text = game.make.text(0,this.yBase*0.3,'',{fontSize:140*Config.ZOOM,fill:"#FFF", font:"ProstOne"});
-        this.text.anchor.setTo(0.5,0.5);
-        this.addChild(this.text);
-
-
         game.add.existing(this);
     }
 
@@ -52,7 +45,5 @@ export default class Hexagon extends Phaser.Graphics {
         this.drawHexagon(5.8,color2);
         this.drawHexagon(5.6,color1);
     }
-    setText(str: string){
-        this.text.setText(str);
-    }
+
 }

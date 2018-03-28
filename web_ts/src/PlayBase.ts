@@ -1,28 +1,37 @@
 import MuBase from "./MuBase";
-import Hexagon from "./Hexagon";
+import HexagonWithStr from "./HexagonWithStr";
 import CenterNumberPanel from "./CenterNumberPanel";
+import MuStatus from "./MuStatus";
+import Diamond from "./Diamond";
+import Config from "./Config";
 
 export default class PlayBase extends MuBase {
     scoreTarget: string;
-    muStatus: any;
     count = 0;
     bust = false;
     score = 0;
     tempScore = 0;
-    omoteHexagon: Hexagon;
-    uraHexagon: Hexagon;
+    omoteHexagon: HexagonWithStr;
+    uraHexagon: HexagonWithStr;
     centerNumberPanel: CenterNumberPanel;
-    create(){
-            this.muStatus = this.game.state.states['Preloader'];		
+    create(){	
             super.create();
             this.count = 0;
             this.bust = false;
-            this.score = this.game.state.states['Preloader'][this.scoreTarget];
+            this.score = MuStatus.getScore(this.scoreTarget);
             this.tempScore = this.score;
-            this.omoteHexagon = new Hexagon(this.game,this.world.width* 0.25,this.world.height*0.85,this.muStatus.omoteColor);
-            this.uraHexagon = new Hexagon(this.game,this.world.width* 0.75,this.world.height*0.85,this.muStatus.uraColor);
+            this.omoteHexagon = new HexagonWithStr(this.game,this.world.width* 0.75,this.world.height*0.85,MuStatus.omoteColor);
+            this.omoteHexagon.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
+            this.omoteHexagon.setText(MuStatus.scoreOmote);
+            this.uraHexagon = new HexagonWithStr(this.game,this.world.width* 0.25,this.world.height*0.85,MuStatus.uraColor);
+            this.uraHexagon.setText(MuStatus.scoreUra);
+            this.uraHexagon.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
             this.centerNumberPanel = new CenterNumberPanel(this.game, this.world.width*0.5,this.world.height*0.5);
+            this.centerNumberPanel.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
+            this.visualInit();
     }
+
+    //オーバーライド(mubase)
     numberPressed(input: any){
         var sfx = this.add.audio('sfx01');
         sfx.play();
@@ -57,6 +66,7 @@ export default class PlayBase extends MuBase {
         }
         console.log("point="+point);
         this.tempScore = this.tempScore - point;
+        this.showScore(this.tempScore);
         if(this.tempScore < 0){
             this.bust = true;
             return;
@@ -68,13 +78,20 @@ export default class PlayBase extends MuBase {
         console.log('score=' + this.score);
 
     }
+    visualInit(){}//オーバーライド用
+    showScore(score:number){//裏表同名メソッドでそれぞれの枠も更新するように上書き
+        this.centerNumberPanel.setText(score);
+    }
+
+    //オーバーライド(mubase)
     redPressed(){
         this.fadeOut();
     }
+
     fadeOut(){
-        this.game.state.states['Preloader'][this.scoreTarget] = this.score;
-        this.muStatus.nextGameStateIndex++;
-        var nextGameState = this.muStatus.gameStates[this.muStatus.nextGameStateIndex];
+        MuStatus.setScore(this.scoreTarget,this.score);
+        MuStatus.nextGameStateIndex++;
+        var nextGameState = MuStatus.gameStates[MuStatus.nextGameStateIndex];
         if(nextGameState == undefined){
             this.game.state.start('Result', true, false);
             return;
@@ -84,7 +101,7 @@ export default class PlayBase extends MuBase {
     }
     winFadeOut(){
         //とりあえずリザルトに飛ぶだけにしておく
-        this.game.state.states['Preloader'][this.scoreTarget] = this.score;
+        MuStatus.setScore(this.scoreTarget,this.score);
         this.game.state.start('Result',true,false);
     }
 }
