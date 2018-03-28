@@ -2,11 +2,11 @@ export default class Diamond extends Phaser.Graphics {
     xBase = 30;
     yBase = 39;
 
-    constructor(game: Phaser.Game, x: number, y: number){
+    constructor(game: Phaser.Game, x: number, y: number, color: number){
         super(game,x,y);
         
         // draw a shape
-        var color1 = 0xd46a6a;
+        var color1 = color;
         var color2 = 0xFFFFFF;
         this.drawDiamond(6,color1);
         this.drawDiamond(5.8,color2);
