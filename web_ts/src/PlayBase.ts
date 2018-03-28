@@ -1,5 +1,5 @@
 import MuBase from "./MuBase";
-import Hexagon from "./Hexagon";
+import HexagonWithStr from "./HexagonWithStr";
 import CenterNumberPanel from "./CenterNumberPanel";
 
 export default class PlayBase extends MuBase {
@@ -9,8 +9,8 @@ export default class PlayBase extends MuBase {
     bust = false;
     score = 0;
     tempScore = 0;
-    omoteHexagon: Hexagon;
-    uraHexagon: Hexagon;
+    omoteHexagon: HexagonWithStr;
+    uraHexagon: HexagonWithStr;
     centerNumberPanel: CenterNumberPanel;
     create(){
             this.muStatus = this.game.state.states['Preloader'];		
@@ -19,8 +19,8 @@ export default class PlayBase extends MuBase {
             this.bust = false;
             this.score = this.game.state.states['Preloader'][this.scoreTarget];
             this.tempScore = this.score;
-            this.omoteHexagon = new Hexagon(this.game,this.world.width* 0.25,this.world.height*0.85,this.muStatus.omoteColor);
-            this.uraHexagon = new Hexagon(this.game,this.world.width* 0.75,this.world.height*0.85,this.muStatus.uraColor);
+            this.omoteHexagon = new HexagonWithStr(this.game,this.world.width* 0.25,this.world.height*0.85,this.muStatus.omoteColor);
+            this.uraHexagon = new HexagonWithStr(this.game,this.world.width* 0.75,this.world.height*0.85,this.muStatus.uraColor);
             this.centerNumberPanel = new CenterNumberPanel(this.game, this.world.width*0.5,this.world.height*0.5);
     }
     numberPressed(input: any){
