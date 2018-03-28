@@ -1,5 +1,3 @@
-import Config from "./Config";
-
 export default class Hexagon extends Phaser.Graphics {
     xBase = 10;
     yBase = 13;
