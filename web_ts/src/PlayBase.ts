@@ -1,10 +1,10 @@
 import MuBase from "./MuBase";
 import HexagonWithStr from "./HexagonWithStr";
 import CenterNumberPanel from "./CenterNumberPanel";
+import MuStatus from "./MuStatus";
 
 export default class PlayBase extends MuBase {
     scoreTarget: string;
-    muStatus: any;
     count = 0;
     bust = false;
     score = 0;
@@ -12,15 +12,14 @@ export default class PlayBase extends MuBase {
     omoteHexagon: HexagonWithStr;
     uraHexagon: HexagonWithStr;
     centerNumberPanel: CenterNumberPanel;
-    create(){
-            this.muStatus = this.game.state.states['Preloader'];		
+    create(){	
             super.create();
             this.count = 0;
             this.bust = false;
-            this.score = this.game.state.states['Preloader'][this.scoreTarget];
+            this.score = MuStatus.getScore(this.scoreTarget);
             this.tempScore = this.score;
-            this.omoteHexagon = new HexagonWithStr(this.game,this.world.width* 0.25,this.world.height*0.85,this.muStatus.omoteColor);
-            this.uraHexagon = new HexagonWithStr(this.game,this.world.width* 0.75,this.world.height*0.85,this.muStatus.uraColor);
+            this.omoteHexagon = new HexagonWithStr(this.game,this.world.width* 0.25,this.world.height*0.85,MuStatus.omoteColor);
+            this.uraHexagon = new HexagonWithStr(this.game,this.world.width* 0.75,this.world.height*0.85,MuStatus.uraColor);
             this.centerNumberPanel = new CenterNumberPanel(this.game, this.world.width*0.5,this.world.height*0.5);
     }
     numberPressed(input: any){
@@ -72,9 +71,9 @@ export default class PlayBase extends MuBase {
         this.fadeOut();
     }
     fadeOut(){
-        this.game.state.states['Preloader'][this.scoreTarget] = this.score;
-        this.muStatus.nextGameStateIndex++;
-        var nextGameState = this.muStatus.gameStates[this.muStatus.nextGameStateIndex];
+        MuStatus.setScore(this.scoreTarget,this.score);
+        MuStatus.nextGameStateIndex++;
+        var nextGameState = MuStatus.gameStates[MuStatus.nextGameStateIndex];
         if(nextGameState == undefined){
             this.game.state.start('Result', true, false);
             return;
@@ -84,7 +83,7 @@ export default class PlayBase extends MuBase {
     }
     winFadeOut(){
         //とりあえずリザルトに飛ぶだけにしておく
-        this.game.state.states['Preloader'][this.scoreTarget] = this.score;
+        MuStatus.setScore(this.scoreTarget,this.score);
         this.game.state.start('Result',true,false);
     }
 }

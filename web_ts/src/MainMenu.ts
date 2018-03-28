@@ -1,5 +1,6 @@
 import MuBase from "./MuBase";
 import Config from "./Config";
+import MuStatus from "./MuStatus";
 
 export default class MainMenu extends MuBase {
 
@@ -47,7 +48,7 @@ export default class MainMenu extends MuBase {
 	}
 	startGame() {
 		this.music.stop();
-		var firstGameState = this.game.state.states['Preloader'].gameStates[0];
+		var firstGameState = MuStatus.gameStates[0];
 		//下のstartの引数は、(key, clearWorld, clearCache, parameter)
 		this.game.state.start(firstGameState, true, false);
 	}
