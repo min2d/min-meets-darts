@@ -22,13 +22,13 @@ export default class PlayBase extends MuBase {
             this.bust = false;
             this.score = MuStatus.getScore(this.scoreTarget);
             this.tempScore = this.score;
-            this.omoteHexagon = new HexagonWithStr(this.game,this.world.width* 0.25,this.world.height*0.85,MuStatus.omoteColor);
+            this.omoteHexagon = new HexagonWithStr(this.game,this.world.width* 0.35,this.world.height*0.85,MuStatus.omoteColor);
             this.omoteHexagon.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
             this.omoteHexagon.setText(MuStatus.scoreOmote);
-            this.uraHexagon = new HexagonWithStr(this.game,this.world.width* 0.75,this.world.height*0.85,MuStatus.uraColor);
+            this.uraHexagon = new HexagonWithStr(this.game,this.world.width* 0.65,this.world.height*0.85,MuStatus.uraColor);
             this.uraHexagon.setText(MuStatus.scoreUra);
             this.uraHexagon.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
-            this.centerNumberPanel = new CenterNumberPanel(this.game, this.world.width*0.5,this.world.height*0.45);
+            this.centerNumberPanel = new CenterNumberPanel(this.game, this.world.width*0.5,this.world.height*0.5);
             this.centerNumberPanel.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
             this.ribbons = new Array();
             this.ribbons[0] = new RibbonWithStr(this.game, this.world.width*0.68, this.world.height*0.12,MuStatus.ribbonColor);

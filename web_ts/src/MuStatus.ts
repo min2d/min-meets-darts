@@ -1,6 +1,6 @@
 export default class MuStatus{
-    static gameStates = ['Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura',
-    'Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura'];
+    static gameStates = ['Omote','Ura','Omote','Ura'/*,'Omote','Ura','Omote','Ura','Omote','Ura',
+'Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura'*/];
     static omoteColor: number;
     static uraColor: number;
     static ribbonColor: number;
@@ -21,6 +21,15 @@ export default class MuStatus{
             this.scoreOmote = score;
         }else if (targetName == 'scoreUra'){
             this.scoreUra = score;
+        }
+    }
+    static getWinnerNumber(): number{
+        if(this.scoreOmote > this.scoreUra){
+            return 2;
+        }else if(this.scoreOmote < this.scoreUra){
+            return 1;
+        }else{
+            return 0;
         }
     }
 }
