@@ -28,14 +28,15 @@ export default class Preloader extends Phaser.State {
 		//	+ lots of other required assets here
 		//フォントのプリロード
 		this.game.add.text(0, 0, "hack", {font:"1px ProstOne", fill:"#FFFFFF"});
-		var omoteUraColor = Config.getOmoteUraColor();
-		MuStatus.omoteColor = omoteUraColor[0];
-		MuStatus.uraColor = omoteUraColor[1];
+		var colors = Config.getColors();
+		MuStatus.omoteColor = colors[0];
+		MuStatus.uraColor = colors[1];
+		MuStatus.ribbonColor = colors[2];
 		this.game.stage.backgroundColor = "#fff";
 	}
 
 	create() {
-
+		
 		this.game.state.start('MainMenu');
 	}
 }

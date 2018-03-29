@@ -23,12 +23,16 @@ export default class Config {
 		0x6cbb5a,0xb6007a,0xe5171f,0x522886,0x0078ba,0x019a66,
 		0xe44d93,0x814721,0xa9cc51,0xee7b1a,0x00a0de
 	];
-	static getOmoteUraColor():number[]{
+	static getColors():number[]{
 		var index1 = Math.floor(Math.random()* this.playerColors.length);
 		var index2 = Math.floor(Math.random()* this.playerColors.length);
 		while(index1 == index2){
 			var index2 = Math.floor(Math.random()* this.playerColors.length);
 		}
-		return [this.playerColors[index1],this.playerColors[index2]];
+		var index3 = Math.floor(Math.random()* this.playerColors.length);
+		while(index3== index2 || index3 == index1){
+			var index3 = Math.floor(Math.random()* this.playerColors.length);			
+		}
+		return [this.playerColors[index1],this.playerColors[index2],this.playerColors[index3]];
 	}
 }
