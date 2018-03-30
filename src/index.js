@@ -9,7 +9,8 @@ const url = require('url')
 const ArduinoFirmata = require('arduino-firmata');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+var mainWindow;
+var arduino;
 
 
 function createWindow () {
@@ -30,7 +31,7 @@ function createWindow () {
     slashes: true
   }))
 
-  // Open the DevTools.
+  // DevToolsを開く
   mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
@@ -43,7 +44,8 @@ function createWindow () {
 
   arduino = new ArduinoFirmata().connect();
   arduino.on('connect', function(){
-    console.log("board version"+arduino.boardVersion);
+    console.log("arduino:");
+    console.log(arduino);
     // setInterval(function(){
     //   arduino.sysex(0x01, null ,function(){});
     // },1000);
@@ -54,7 +56,7 @@ function createWindow () {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -72,13 +74,67 @@ app.on('activate', function () {
     createWindow()
   }
 })
+
+
 electron.ipcMain.on('message', function (event, arg) {
   //受信(シリアル発火用)
-  console.log('get '+ arg);
-  // event.sender.send('asynchronous-reply', 'pong')
-  var callback=function(){};
-  arduino.sysex(0x01, null ,callback);
+  // event.sender.send('asynchronous-reply', 'pong') //返し
+  console.log(arduino);
+  if(arduino.serialport){
+    console.log('arduino not found');
+  }else{
+    switch(arg.eventType){
+      case 'DMX':
+        sendDmxEvent(arg.group,arg.color[0],arg.color[1],arg.color[2]);
+        break;
+      case 'LargeButton':
+        if(arg.lighting){
+          turnOnlargeButton();
+        }else{
+          turnOfflargeButton();
+        }
+        break;
+      case 'UpButton':
+        break;
+      //これ以外のボタン使わないから後でかくぅ・・・
+    }
+  }
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+function sysExCallback(){}
+
+function sendDmxEvent(group,r,g,b){
+  //255以上は切る
+  var bytesR = r;
+  var bytesG = g;
+  var bytesB = b;
+  if(r>255) bytesR=255;
+  if(g>255) bytesG=255;
+  if(b>255) bytesB=255;
+  var arr = [
+    group,
+    bytesR >> 1,
+    (bytesR & 0b10000000) >> 7,
+    bytesG >> 1,
+    (bytesG & 0b10000000) >> 7,
+    bytesB >> 1,
+    (bytesB & 0b10000000) >> 7,
+  ]
+  console.log(arr);
+  arduino.sysex(0x01, arr ,sysExCallback);
+}
+
+//適当な色を一回送信する ※TSに書く時の参考用
+function sendRandomColor(){
+  var r =  Math.floor( Math.random() * 256 );
+  var g =  Math.floor( Math.random() * 256 );
+  var b =  Math.floor( Math.random() * 256 );
+  sendDmxEvent(1,r,g,b)
+}
+
+function turnOnlargeButton(){
+  arduino.sysex(0x02,[1],sysExCallback);
+}
+function turnOffLargeButton(){
+  arduino.sysex(0x02,[0],sysExCallback);
+}
