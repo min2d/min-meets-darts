@@ -22,6 +22,10 @@ export default class PlayBase extends MuBase {
             this.bust = false;
             this.score = MuStatus.getScore(this.scoreTarget);
             this.tempScore = this.score;
+
+            var background = this.add.sprite(0, 0, 'back01');
+            background.scale = new Phaser.Point(Config.ZOOM, Config.ZOOM);
+
             this.omoteHexagon = new HexagonWithStr(this.game,this.world.width* 0.35,this.world.height*0.85,MuStatus.omoteColor);
             this.omoteHexagon.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
             this.omoteHexagon.setText(MuStatus.scoreOmote);
@@ -30,6 +34,7 @@ export default class PlayBase extends MuBase {
             this.uraHexagon.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
             this.centerNumberPanel = new CenterNumberPanel(this.game, this.world.width*0.5,this.world.height*0.5);
             this.centerNumberPanel.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
+
             this.ribbons = new Array();
             this.ribbons[0] = new RibbonWithStr(this.game, this.world.width*0.68, this.world.height*0.12,MuStatus.ribbonColor);
             this.ribbons[1] = new RibbonWithStr(this.game, this.world.width*0.48, this.world.height*0.12,MuStatus.ribbonColor);

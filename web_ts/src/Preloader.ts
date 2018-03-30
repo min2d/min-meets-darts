@@ -23,8 +23,9 @@ export default class Preloader extends Phaser.State {
 		this.load.image('titlepage', 'assets/titlepage.png');
 		this.load.audio('titleMusic', 'assets/jingle01.wav', true);
 		this.load.audio('sfx01', 'assets/sfx01.wav', true);
-		this.load.image('minWhite', 'assets/min_white.png');
-		this.load.image('level1', 'assets/level1.png');
+		this.load.image('back01', 'assets/back01.png');
+		this.load.image('back02', 'assets/back02.png');
+		this.load.image('back03', 'assets/back03.png');
 		//	+ lots of other required assets here
 		//フォントのプリロード
 		this.game.add.text(0, 0, "hack", {font:"1px ProstOne", fill:"#FFFFFF"});
