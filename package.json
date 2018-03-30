@@ -22,6 +22,6 @@
     "webpack-cli": "^2.0.9"
   },
   "dependencies": {
-    "arduino-firmata": "min2d/node-arduino-firmata"
+    "arduino-firmata": "min2d/node-arduino-firmata#uno"
   }
 }
