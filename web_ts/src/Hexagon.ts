@@ -18,13 +18,13 @@ export default class Hexagon extends Phaser.Graphics {
 
     drawHexagon(dia: number, col:number){
         this.beginFill(col);
-        this.moveTo(this.xBase*0.85*dia,this.yBase*-1*dia);
-        this.lineTo(this.xBase*1.85*dia, 0);
-        this.lineTo(this.xBase*0.85*dia, this.yBase*dia);
-        this.lineTo(this.xBase*-0.85*dia, this.yBase*dia);
-        this.lineTo(this.xBase*-1.85*dia,0);
-        this.lineTo(this.xBase*-0.85*dia,this.yBase*-1*dia);
-        this.lineTo(this.xBase*0.85*dia,this.yBase*-1*dia);
+        this.moveTo(this.xBase*0.9*dia,this.yBase*-1*dia);
+        this.lineTo(this.xBase*1.9*dia, 0);
+        this.lineTo(this.xBase*0.9*dia, this.yBase*dia);
+        this.lineTo(this.xBase*-0.9*dia, this.yBase*dia);
+        this.lineTo(this.xBase*-1.9*dia,0);
+        this.lineTo(this.xBase*-0.9*dia,this.yBase*-1*dia);
+        this.lineTo(this.xBase*0.9*dia,this.yBase*-1*dia);
         this.endFill();
     }
 
