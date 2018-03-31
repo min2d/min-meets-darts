@@ -22,10 +22,10 @@ export default class Preloader extends Phaser.State {
 		//	As this is just a Project Template I've not provided these assets, swap them for your own.
 		this.load.audio('loop01', 'assets/loop01.mp3', true);
 		this.load.audio('loop02', 'assets/loop02.mp3', true);
-		this.load.audio('ring01', 'assets/ring01.wav', true);
-		this.load.audio('ring02', 'assets/ring02.wav', true);	
-		this.load.audio('sfx01', 'assets/sfx01.wav', true);		
-		this.load.audio('sfx02', 'assets/sfx02.wav', true);		
+		this.load.audio('ring01', 'assets/ring01.mp3', true);
+		this.load.audio('ring02', 'assets/ring02.mp3', true);	
+		this.load.audio('sfx01', 'assets/sfx01.mp3', true);		
+		this.load.audio('sfx02', 'assets/sfx02.mp3', true);		
 		this.load.image('back01', 'assets/back01.png');
 		this.load.image('back02', 'assets/back02.png');
 		this.load.image('back03', 'assets/back03.png');

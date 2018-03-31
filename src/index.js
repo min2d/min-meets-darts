@@ -80,7 +80,7 @@ electron.ipcMain.on('message', function (event, arg) {
   //受信(シリアル発火用)
   // event.sender.send('asynchronous-reply', 'pong') //返し
   console.log(arduino);
-  if(arduino.serialport){
+  if(arduino.serialport_name == undefined){
     console.log('arduino not found');
   }else{
     switch(arg.eventType){
