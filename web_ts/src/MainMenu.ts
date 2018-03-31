@@ -12,7 +12,7 @@ export default class MainMenu extends MuBase {
 
 	create() {
 		// set BGM
-		this.music = this.add.audio('titleMusic');
+		this.music = this.add.audio('ring01');
 		this.music.play();
 		// set BG sprite
 		this.background = this.add.sprite(0, 0, 'back02');
