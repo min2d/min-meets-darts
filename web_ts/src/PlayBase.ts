@@ -5,6 +5,7 @@ import MuStatus from "./MuStatus";
 import Diamond from "./Diamond";
 import Config from "./Config";
 import RibbonWithStr from "./RibbonWithStr";
+import MuOutput from "./MuOutput";
 
 export default class PlayBase extends MuBase {
     scoreTarget: string;
@@ -16,8 +17,12 @@ export default class PlayBase extends MuBase {
     uraHexagon: HexagonWithStr;
     centerNumberPanel: CenterNumberPanel;
     ribbons: RibbonWithStr[];
+    hit_sfx: Phaser.Sound;
     create(){	
             super.create();
+
+            this.hit_sfx= this.add.audio('sfx02');
+
             this.count = 0;
             this.bust = false;
             this.score = MuStatus.getScore(this.scoreTarget);
@@ -48,8 +53,7 @@ export default class PlayBase extends MuBase {
 
     //オーバーライド(mubase)
     numberPressed(input: any){
-        var sfx = this.add.audio('sfx01');
-        sfx.play();
+        var sfx = this.add.audio('sfx02');
         if(this.count >= 3 ){
             return;
         }
@@ -57,6 +61,8 @@ export default class PlayBase extends MuBase {
             return;
         }
         //hit
+        this.hit_sfx.play();
+        this.muOutput.flashDmx(1,0xffffff);        
         this.count++;
         for(var i=0;i<this.count;i++){
             this.ribbons[i].startAppeal();
@@ -66,6 +72,7 @@ export default class PlayBase extends MuBase {
         if(this.bust){
             //bust
         }else{
+            
             //点数確定
             if(this.count<3){
                 return;
