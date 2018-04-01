@@ -1,5 +1,11 @@
 import Config from "./Config";
+import MuOutput from "./MuOutput";
 export default class MuBase extends Phaser.State {
+    muOutput: MuOutput;
+    constructor(muOutput?: MuOutput){
+        super();
+        if(muOutput)this.muOutput = muOutput;
+    }
     create(){
 		this.input.keyboard.addCallbacks(this, null, null, this.keyPress);          
     }

@@ -11,6 +11,7 @@ const ArduinoFirmata = require('arduino-firmata');
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow;
 var arduino;
+var arduinoReady = false;
 
 
 function createWindow () {
@@ -44,11 +45,8 @@ function createWindow () {
 
   arduino = new ArduinoFirmata().connect();
   arduino.on('connect', function(){
-    console.log("arduino:");
-    console.log(arduino);
-    // setInterval(function(){
-    //   arduino.sysex(0x01, null ,function(){});
-    // },1000);
+    console.log("board version"+arduino.boardVersion);
+    arduinoReady = true;
   });
 
 }
@@ -79,8 +77,7 @@ app.on('activate', function () {
 electron.ipcMain.on('message', function (event, arg) {
   //受信(シリアル発火用)
   // event.sender.send('asynchronous-reply', 'pong') //返し
-  console.log(arduino);
-  if(arduino.serialport_name == undefined){
+  if(!arduinoReady){    
     console.log('arduino not found');
   }else{
     switch(arg.eventType){
