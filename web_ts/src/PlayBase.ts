@@ -6,6 +6,7 @@ import Diamond from "./Diamond";
 import Config from "./Config";
 import RibbonWithStr from "./RibbonWithStr";
 import MuOutput from "./MuOutput";
+import TurnablePanelText from "./TurnablePanelText";
 
 export default class PlayBase extends MuBase {
     scoreTarget: string;
@@ -13,12 +14,12 @@ export default class PlayBase extends MuBase {
     bust = false;
     score = 0;
     tempScore = 0;
-    omoteHexagon: HexagonWithStr;
-    uraHexagon: HexagonWithStr;
+    omoteHexagon: TurnablePanelText;
+    uraHexagon: TurnablePanelText;
     centerNumberPanel: CenterNumberPanel;
     ribbons: RibbonWithStr[];
     hit_sfx: Phaser.Sound;
-    create(){	
+    create(){
             super.create();
 
             this.hit_sfx= this.add.audio('sfx02');
@@ -29,23 +30,21 @@ export default class PlayBase extends MuBase {
             this.tempScore = this.score;
 
             var background = this.add.sprite(0, 0, 'back01');
-            background.scale = new Phaser.Point(Config.ZOOM, Config.ZOOM);
 
-            this.omoteHexagon = new HexagonWithStr(this.game,this.world.width* 0.35,this.world.height*0.85,MuStatus.omoteColor);
-            this.omoteHexagon.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
+            this.omoteHexagon = new TurnablePanelText(this.game,this.world.width* 0.35,this.world.height*0.85,'omote01','omote01d');
             this.omoteHexagon.setText(MuStatus.scoreOmote);
-            this.uraHexagon = new HexagonWithStr(this.game,this.world.width* 0.65,this.world.height*0.85,MuStatus.uraColor);
+            this.omoteHexagon.setFontSize(150);
+            this.uraHexagon = new TurnablePanelText(this.game,this.world.width* 0.65,this.world.height*0.85,'ura01','ura01d');
             this.uraHexagon.setText(MuStatus.scoreUra);
-            this.uraHexagon.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
+            this.uraHexagon.setFontSize(150);
+            
             this.centerNumberPanel = new CenterNumberPanel(this.game, this.world.width*0.5,this.world.height*0.5);
-            this.centerNumberPanel.scale = new PIXI.Point(Config.ZOOM*2, Config.ZOOM*2);
 
             this.ribbons = new Array();
             this.ribbons[0] = new RibbonWithStr(this.game, this.world.width*0.68, this.world.height*0.12,MuStatus.ribbonColor);
             this.ribbons[1] = new RibbonWithStr(this.game, this.world.width*0.48, this.world.height*0.12,MuStatus.ribbonColor);
             this.ribbons[2] = new RibbonWithStr(this.game, this.world.width*0.28, this.world.height*0.12,MuStatus.ribbonColor);
             for(var i=0;i<3;i++){
-                this.ribbons[i].scale = new PIXI.Point(Config.ZOOM, Config.ZOOM);
                 this.ribbons[i].stopAppeal();
             }
             this.visualInit();//baseでできない処理(オーバーライドしてる)
@@ -53,7 +52,6 @@ export default class PlayBase extends MuBase {
 
     //オーバーライド(mubase)
     numberPressed(input: any){
-        var sfx = this.add.audio('sfx02');
         if(this.count >= 3 ){
             return;
         }
@@ -62,7 +60,7 @@ export default class PlayBase extends MuBase {
         }
         //hit
         this.hit_sfx.play();
-        this.muOutput.flashDmx(1,0xffffff);        
+        this.muOutput.flashDmx(1,0xffffff);
         this.count++;
         for(var i=0;i<this.count;i++){
             this.ribbons[i].startAppeal();
@@ -72,11 +70,11 @@ export default class PlayBase extends MuBase {
         if(this.bust){
             //bust
         }else{
-            
+
             //点数確定
             if(this.count<3){
                 return;
-            } 
+            }
         }
         //待機
         //"push red button"

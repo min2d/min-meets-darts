@@ -12,6 +12,8 @@ export default class Boot extends Phaser.State {
 
 		if (this.game.device.desktop) {
 			//  If you have any desktop specific settings, they can go in here
+			
+			this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 			this.scale.pageAlignHorizontally = true;
 		}
 		else {

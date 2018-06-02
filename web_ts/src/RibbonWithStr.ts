@@ -7,7 +7,7 @@ export default class RibbonWithStr extends Phaser.Graphics{
     constructor(game: Phaser.Game, x: number, y: number, color:number){
         super(game,x,y);
         this.Ribbon = new Ribbon(game,0,0,color);
-        this.text = game.make.text(0, 3.9, '',{fontSize:100*Config.ZOOM,fill:"#FFF", font:"ProstOne"});
+        this.text = game.make.text(0, 3.9, '',{fontSize:100,fill:"#FFF", font:"ProstOne"});
         this.text.anchor.setTo(0.5,0.5);
         this.addChild(this.Ribbon);
         this.addChild(this.text);

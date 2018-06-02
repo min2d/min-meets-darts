@@ -1,5 +1,4 @@
 export default class Config {
-    static ZOOM = 0.5;
     static keyMap:{[index: number]: any} = {
 		13:"red",9:"black",
 		65:[2,1],66:[4,2],67:[15,3],68:[11,3],69:[8,1],70:[14,2],71:[14,1],

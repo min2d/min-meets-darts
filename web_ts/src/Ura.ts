@@ -9,7 +9,8 @@ export default class Ura extends PlayBase {
   }
   //オーバーライド
 	visualInit(){
-    this.omoteHexagon.stopAppeal();
+    this.omoteHexagon.disactivate();
+    this.uraHexagon.activate();
     this.centerNumberPanel.setText(MuStatus.scoreUra);
   }
   //オーバーライド

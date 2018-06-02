@@ -29,7 +29,13 @@ export default class Preloader extends Phaser.State {
 		this.load.image('back01', 'assets/back01.png');
 		this.load.image('back02', 'assets/back02.png');
 		this.load.image('back03', 'assets/back03.png');
-		//	+ lots of other required assets here
+
+		var imageNames = ['omote01', 'omote01d', 'omote02', 'omote02d',
+						  'ura01', 'ura01d', 'ura02', 'ura02d',];
+		for (var name of imageNames){
+			this.load.image(name,'assets/'+ name +'.png');
+		}
+		
 		//フォントのプリロード
 		this.game.add.text(0, 0, "hack", {font:"1px ProstOne", fill:"#FFFFFF"});
 		var colors = Config.getColors();
@@ -40,7 +46,6 @@ export default class Preloader extends Phaser.State {
 	}
 
 	create() {
-		
 		this.game.state.start('MainMenu');
 	}
 }
