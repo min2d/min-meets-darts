@@ -1,5 +1,5 @@
 export default class MuStatus{
-    static gameStates = ['Omote','Ura','Omote','Ura'/*,'Omote','Ura','Omote','Ura','Omote','Ura',
+    static gameStates = ['Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura',/*
 'Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura'*/];
     static nextGameStateIndex = 0;
     static scoreOmote = 301;

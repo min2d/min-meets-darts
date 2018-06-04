@@ -85,7 +85,7 @@ export default class PlayBase extends MuBase {
         var histText = '';
         if(this.bust){
             // bust
-            histText='Bust'
+            histText='Bust';
         }else{
             // 得点獲得の場合のview
             this.showScore(this.tempScore);
@@ -94,8 +94,8 @@ export default class PlayBase extends MuBase {
             }else{
                 histText = Config.histText[input[1]] + ' ' + input[0];
             }
-            this.ribbons[this.count-1].setText(histText);//リボン表示
         }
+        this.ribbons[this.count-1].setText(histText);//リボン表示
         if(this.count>=3 || this.bust){//残り本数が無くなったとき
             console.log('push red button');
         }
