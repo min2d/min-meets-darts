@@ -17,7 +17,7 @@ export default class PlayBase extends MuBase {
     omoteHexagon: TurnablePanelText;
     uraHexagon: TurnablePanelText;
     centerNumberPanel: CenterNumberPanel;
-    ribbons: RibbonWithStr[];
+    ribbons: TurnablePanelText[];
     hit_sfx: Phaser.Sound;
     create(){
             super.create();
@@ -41,11 +41,11 @@ export default class PlayBase extends MuBase {
             this.centerNumberPanel = new CenterNumberPanel(this.game, this.world.width*0.5,this.world.height*0.5);
 
             this.ribbons = new Array();
-            this.ribbons[0] = new RibbonWithStr(this.game, this.world.width*0.68, this.world.height*0.12,MuStatus.ribbonColor);
-            this.ribbons[1] = new RibbonWithStr(this.game, this.world.width*0.48, this.world.height*0.12,MuStatus.ribbonColor);
-            this.ribbons[2] = new RibbonWithStr(this.game, this.world.width*0.28, this.world.height*0.12,MuStatus.ribbonColor);
+            this.ribbons[0] = new TurnablePanelText(this.game, this.world.width*0.68, this.world.height*0.12,'ribbon01','ribbon01d');
+            this.ribbons[1] = new TurnablePanelText(this.game, this.world.width*0.48, this.world.height*0.12,'ribbon01','ribbon01d');
+            this.ribbons[2] = new TurnablePanelText(this.game, this.world.width*0.28, this.world.height*0.12,'ribbon01','ribbon01d');
             for(var i=0;i<3;i++){
-                this.ribbons[i].stopAppeal();
+                this.ribbons[i].disactivate();
             }
             this.visualInit();//baseでできない処理(オーバーライドしてる)
     }
@@ -63,7 +63,7 @@ export default class PlayBase extends MuBase {
         this.muOutput.flashDmx(1,0xffffff);
         this.count++;
         for(var i=0;i<this.count;i++){
-            this.ribbons[i].startAppeal();
+            this.ribbons[i].activate();
         }
         console.log(input);
         this.exec(input);
