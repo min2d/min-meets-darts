@@ -7,6 +7,7 @@ import Config from "./Config";
 import RibbonWithStr from "./RibbonWithStr";
 import MuOutput from "./MuOutput";
 import TurnablePanelText from "./TurnablePanelText";
+import TurnablePanel from "./TurnablePanel";
 
 export default class PlayBase extends MuBase {
     scoreTarget: string;
@@ -14,6 +15,8 @@ export default class PlayBase extends MuBase {
     bust = false;
     score = 0;
     tempScore = 0;
+    omoteBack: TurnablePanel;
+    uraBack: TurnablePanel;
     omoteHexagon: TurnablePanelText;
     uraHexagon: TurnablePanelText;
     centerNumberPanel: CenterNumberPanel;
@@ -31,10 +34,18 @@ export default class PlayBase extends MuBase {
 
             var background = this.add.sprite(0, 0, 'back01');
 
-            this.omoteHexagon = new TurnablePanelText(this.game,this.world.width* 0.35,this.world.height*0.85,'omote01','omote01d');
+            var backPositionY = this.world.height*0.55
+            var backPositionXOffset = this.world.width* 0.35
+            this.omoteBack = new TurnablePanel(this.game,  this.world.width* 0.5 - backPositionXOffset , backPositionY, 'omote02', 'omote02d');
+            this.omoteBack.activate();
+            this.uraBack = new TurnablePanel(this.game, this.world.width* 0.5 + backPositionXOffset, backPositionY,'ura02', 'ura02d');
+            this.uraBack.activate();
+
+            //Hexagonは以前六角形を表示していた名残（なおすのめんどい）
+            this.omoteHexagon = new TurnablePanelText(this.game,this.world.width* 0.35,this.world.height*0.85,'omote01', 'omote01d');
             this.omoteHexagon.setText(MuStatus.scoreOmote);
             this.omoteHexagon.setFontSize(150);
-            this.uraHexagon = new TurnablePanelText(this.game,this.world.width* 0.65,this.world.height*0.85,'ura01','ura01d');
+            this.uraHexagon = new TurnablePanelText(this.game,this.world.width* 0.65,this.world.height*0.85,'ura01', 'ura01d');
             this.uraHexagon.setText(MuStatus.scoreUra);
             this.uraHexagon.setFontSize(150);
             
