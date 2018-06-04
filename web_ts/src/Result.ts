@@ -1,13 +1,13 @@
 import MuBase from "./MuBase";
 import Config from "./Config";
 import MuStatus from "./MuStatus";
-import TurnablePanelText from "./TurnablePanelText";
+import PanelText from "./PanelText";
 
 export default class Result extends MuBase {
 
   
-  omoteHexagon: TurnablePanelText;
-  uraHexagon: TurnablePanelText;
+  omoteHexagon: PanelText;
+  uraHexagon: PanelText;
   
   create(){
     console.log('Result created');		
@@ -22,14 +22,12 @@ export default class Result extends MuBase {
     
     var hexagonPositionY = this.world.height*0.65;
     var hexagonPositionXOffset = this.world.height*0.27;
-    this.omoteHexagon = new TurnablePanelText(this.game,this.world.width* 0.5 - hexagonPositionXOffset, hexagonPositionY, 'omote01', 'omote01d');
+    this.omoteHexagon = new PanelText(this.game,this.world.width* 0.5 - hexagonPositionXOffset, hexagonPositionY, 'omote01');
     this.omoteHexagon.setText(MuStatus.scoreOmote);
     this.omoteHexagon.setFontSize(150);
-    this.omoteHexagon.activate();
-    this.uraHexagon = new TurnablePanelText(this.game,this.world.width* 0.5 + hexagonPositionXOffset, hexagonPositionY, 'ura01', 'ura01d');
+    this.uraHexagon = new PanelText(this.game,this.world.width* 0.5 + hexagonPositionXOffset, hexagonPositionY, 'ura01');
     this.uraHexagon.setText(MuStatus.scoreUra);
     this.uraHexagon.setFontSize(150);
-    this.uraHexagon.activate();
 
     this.omoteHexagon.setText(MuStatus.scoreOmote);
     this.uraHexagon.setText(MuStatus.scoreUra);
