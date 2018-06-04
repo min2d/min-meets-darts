@@ -16,6 +16,7 @@ export default class Config {
 		1190:[5,2],1191:[5,1],186:[12,1],187:[2,2],188:[13,2],189:[4,1],190:[9,3],
 		1189:[2,1],191:[10,3],192:[4,1],219:[11,1],221:[10,1],222:[16,1],1222:[8,2]
 	}
+	static histText:string[] = ['Bull','Single','Double','Triple'];
 	static playerColors:any = [
 		0xf39700,0xe60012,0x00a7db,0x009944,0xd7c447,
 		0x9b7cb6,0x00ada9,0xbb641d,0xe85298,0x0079c2,
