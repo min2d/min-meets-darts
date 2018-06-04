@@ -7,6 +7,8 @@ export default class TurnablePanelText extends TurnablePanel{
                 activeImgName: string, inactiveImgName: string){
         super(game,x,y,activeImgName,inactiveImgName);
         this.text = game.add.text(x, y, '',{fontSize: this.fontSize, fill:"#FFF", font:"ProstOne"});
+        this.text.stroke = '#000000'; //ふち
+        this.text.strokeThickness = 6;//ふちのふとさ
         this.text.anchor.setTo(0.5,0.5);
         this.addChild(this.text);
     }
