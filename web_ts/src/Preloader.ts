@@ -29,7 +29,7 @@ export default class Preloader extends Phaser.State {
 
 
 		var imageNames = ['back01','back02','back03','omote01', 'omote01d', 'omote02', 'omote02d',
-						  'ura01', 'ura01d', 'ura02', 'ura02d','ribbon01','ribbon01d'];
+						  'ura01', 'ura01d', 'ura02', 'ura02d','ribbon01','ribbon01d','round01'];
 		for (var name of imageNames){
 			this.load.image(name,'assets/'+ name +'.png');
 		}

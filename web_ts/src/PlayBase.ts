@@ -5,6 +5,7 @@ import Config from "./Config";
 import MuOutput from "./MuOutput";
 import TurnablePanelText from "./TurnablePanelText";
 import TurnablePanel from "./TurnablePanel";
+import PanelText from "./PanelText";
 
 export default class PlayBase extends MuBase {
     scoreTarget: string;
@@ -18,6 +19,7 @@ export default class PlayBase extends MuBase {
     uraHexagon: TurnablePanelText;
     centerNumberPanel: CenterNumberPanel;
     ribbons: TurnablePanelText[];
+    roundPanel: PanelText;
     hit_sfx: Phaser.Sound;
     create(){
             super.create();
@@ -55,6 +57,10 @@ export default class PlayBase extends MuBase {
             for(var i=0;i<3;i++){
                 this.ribbons[i].disactivate();
             }
+            this.roundPanel = new PanelText(this.game, this.world.width*0.07, this.world.height*0.1, 'round01');
+            this.roundPanel.setText(Math.floor(MuStatus.nextGameStateIndex/2) + 1);
+
+
             this.visualInit();//baseでできない処理(オーバーライドしてる)
     }
 
