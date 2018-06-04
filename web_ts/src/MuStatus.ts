@@ -1,9 +1,6 @@
 export default class MuStatus{
     static gameStates = ['Omote','Ura','Omote','Ura'/*,'Omote','Ura','Omote','Ura','Omote','Ura',
 'Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura','Omote','Ura'*/];
-    static omoteColor: number;
-    static uraColor: number;
-    static ribbonColor: number;
     static nextGameStateIndex = 0;
     static scoreOmote = 301;
     static scoreUra = 301;

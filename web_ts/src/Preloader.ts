@@ -36,10 +36,6 @@ export default class Preloader extends Phaser.State {
 		
 		//フォントのプリロード(何でもいいから1回読み込ませればいいらしい)
 		this.game.add.text(0, 0, "hack", {font:"1px ProstOne", fill:"#FFFFFF"});
-		var colors = Config.getColors();
-		MuStatus.omoteColor = colors[0];
-		MuStatus.uraColor = colors[1];
-		MuStatus.ribbonColor = colors[2];
 		this.game.stage.backgroundColor = "#fff";
 	}
 
