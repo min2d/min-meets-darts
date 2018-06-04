@@ -9,7 +9,10 @@ export default class Omote extends PlayBase {
 	}
 	//オーバーライド
 	visualInit(){
-		this.uraHexagon.stopAppeal();
+		this.uraHexagon.disactivate();
+		this.uraBack.disactivate();
+		this.omoteHexagon.activate();
+		this.omoteBack.activate();
 		this.centerNumberPanel.setText(MuStatus.scoreOmote);
 	}
 	//オーバーライド

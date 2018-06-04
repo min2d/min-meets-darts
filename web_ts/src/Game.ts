@@ -11,7 +11,7 @@ export default class Game extends Phaser.Game {
 	muOutput: MuOutput;
 	
 	constructor() {
-		super(1920*Config.ZOOM, 1080*Config.ZOOM, Phaser.AUTO, 'content', null);
+		super(1920, 1080, Phaser.AUTO, 'content', null);
 		this.muOutput = new MuOutput(this);
 
 		this.state.add('Boot', Boot, false);

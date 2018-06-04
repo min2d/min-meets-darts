@@ -26,21 +26,20 @@ export default class Preloader extends Phaser.State {
 		this.load.audio('ring02', 'assets/ring02.mp3', true);	
 		this.load.audio('sfx01', 'assets/sfx01.mp3', true);		
 		this.load.audio('sfx02', 'assets/sfx02.mp3', true);		
-		this.load.image('back01', 'assets/back01.png');
-		this.load.image('back02', 'assets/back02.png');
-		this.load.image('back03', 'assets/back03.png');
-		//	+ lots of other required assets here
-		//フォントのプリロード
+
+
+		var imageNames = ['back01','back02','back03','omote01', 'omote01d', 'omote02', 'omote02d',
+						  'ura01', 'ura01d', 'ura02', 'ura02d','ribbon01','ribbon01d'];
+		for (var name of imageNames){
+			this.load.image(name,'assets/'+ name +'.png');
+		}
+		
+		//フォントのプリロード(何でもいいから1回読み込ませればいいらしい)
 		this.game.add.text(0, 0, "hack", {font:"1px ProstOne", fill:"#FFFFFF"});
-		var colors = Config.getColors();
-		MuStatus.omoteColor = colors[0];
-		MuStatus.uraColor = colors[1];
-		MuStatus.ribbonColor = colors[2];
 		this.game.stage.backgroundColor = "#fff";
 	}
 
 	create() {
-		
 		this.game.state.start('MainMenu');
 	}
 }
