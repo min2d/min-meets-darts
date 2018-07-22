@@ -1,6 +1,7 @@
 # min-meets-darts
 
 electronアプリです。パッケージングはSerialPort周りがうまくいかなかったのでやめました。
+キー配置は市販のdartslive(キーボードとして認識されるもの)に対応しています。
 
 ## 動作環境
 nodejs v8.9.4  
